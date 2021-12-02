@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: staff-management-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/employee_schema?useSSL=false
+    username: demo_user
+    password: Anits123*
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+      show_sql: true
+server:
+  port: 8888
