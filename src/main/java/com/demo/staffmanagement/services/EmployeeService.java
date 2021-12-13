@@ -20,6 +20,10 @@ public class EmployeeService {
 
     public EmployeeDO createEmployee(EmployeeDO employeeDO){
         Employee employee = convertor.convert2Employee(employeeDO);
+        Optional<Employee> managerOpt = employeeRepository.findById(employeeDO.getManagerId());
+        if(!managerOpt.isEmpty()){
+            employee.setManager(managerOpt.get());
+        }
         employeeRepository.save(employee);
         employeeDO.setId(employee.getId());
         return employeeDO;
@@ -28,5 +32,6 @@ public class EmployeeService {
     public EmployeeDO getEmployee(Long employeeId){
         Optional<Employee> employeeOpt = employeeRepository.findById(employeeId);
         return convertor.convert2EmployeeDO(employeeOpt.get());
+
     }
 }
